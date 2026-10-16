@@ -4,9 +4,9 @@ directories:
   output: release-stories
 extraMetadata:
   name: asteoria-stories
-  version: 2.0.0
+  version: 2.0.1
   prismaProduct: stories
-fileAssociations: [{"ext":"auralis-lore","mimeType":"application/x-auralis-lore","name":"Auralis Lore · .auralis-lore","role":"Editor"},{"ext":"lore","mimeType":"application/x-asteoria-lore","name":"Auralis Lore · .lore","role":"Editor"}]
+fileAssociations: [{"ext":"auralis-lore","mimeType":"application/x-auralis-lore","name":"Auralis Lore · .auralis-lore","role":"Editor"}]
 files:
   - dist-stories/**/*
   - desktop/**/*

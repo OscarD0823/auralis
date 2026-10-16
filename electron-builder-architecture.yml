@@ -4,9 +4,9 @@ directories:
   output: release-architecture
 extraMetadata:
   name: asteoria-architecture
-  version: 0.4.0
+  version: 0.4.1
   prismaProduct: architecture
-fileAssociations: [{"ext":"auralis-atlas","mimeType":"application/x-auralis-atlas","name":"Auralis Atlas · .auralis-atlas","role":"Editor"},{"ext":"atlas","mimeType":"application/x-asteoria-atlas","name":"Auralis Atlas · .atlas","role":"Editor"},{"ext":"prisma-arquitectura","mimeType":"application/x-asteoria-atlas","name":"Auralis Atlas · .prisma-arquitectura","role":"Editor"}]
+fileAssociations: [{"ext":"auralis-atlas","mimeType":"application/x-auralis-atlas","name":"Auralis Atlas · .auralis-atlas","role":"Editor"}]
 files:
   - dist-architecture/**/*
   - desktop/**/*

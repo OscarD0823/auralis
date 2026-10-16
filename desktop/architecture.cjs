@@ -6,7 +6,7 @@ const name = 'Prisma Arquitectura', smoke = process.argv.includes('--smoke-test'
 app.setName(name); app.setPath('userData', path.join(app.getPath('appData'), 'PrismaArquitectura'));
 protocol.registerSchemesAsPrivileged([{ scheme: 'prisma-architecture', privileges: { standard: true, secure: true, supportFetchAPI: true, corsEnabled: true } }]);
 let win, pendingProject = null;
-function projectArgument(args) { return args.find(a => !a.startsWith('--') && a.toLowerCase().endsWith('.prisma-arquitectura')); }
+function projectArgument(args) { return args.find(a => !a.startsWith('--') && a.toLowerCase().endsWith('.auralis-atlas')); }
 function readProject(filename) { const target = path.resolve(filename); if (!fs.statSync(target).isFile() || fs.statSync(target).size > 10 * 1024 * 1024) throw Error('El proyecto debe ser un archivo de hasta 10 MB.'); return fs.readFileSync(target, 'utf8'); }
 function openProject(args) { const filename = projectArgument(args); if (!filename) return; try { const text = readProject(filename); if (win?.webContents && !win.webContents.isLoading()) win.webContents.send('architecture-open-file', text); else pendingProject = text; } catch (e) { console.error(e.message); } }
 if (!app.requestSingleInstanceLock()) app.quit();

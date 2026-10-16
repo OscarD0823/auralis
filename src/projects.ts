@@ -111,7 +111,7 @@ export async function readProject(bytes: Uint8Array): Promise<Workspace> {
     throw new Error("El archivo de proyecto no es válido.");
   }
   if (!["auralis-project","prisma-pdf"].includes(input?.format) || input?.version !== 3)
-    throw new Error("Selecciona un proyecto .auralis o una copia anterior .prisma.");
+    throw new Error("Selecciona un proyecto .auralis.");
   const w = input.workspace as Workspace;
   if (
     !w ||

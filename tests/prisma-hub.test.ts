@@ -21,7 +21,7 @@ test("Auralis hosts each editor while standalone identities ignore hub routing",
   assert.equal(resolveProducts('__proto__').distribution,'pdf');
 });
 test('file routing admits only actually supported original formats',()=>{
-  for(const [name,kind] of [['Mi.PDF','pdf'],['t.docm','writer'],['t.xlsm','sheets'],['t.pptm','slides'],['t.sqlite','data'],['t.prisma','pdf']]) assert.equal(editorForFile(name),kind);
+  for(const [name,kind] of [['Mi.PDF','pdf'],['t.docm','writer'],['t.xlsm','sheets'],['t.pptm','slides'],['t.sqlite','data'],['t.auralis','pdf']]) assert.equal(editorForFile(name),kind);
   for(const name of ['t.doc','t.xls','t.ppt','t.pub','t.accdb','t.exe']) assert.equal(editorForFile(name),undefined);
 });
 test('Pages shares only same-origin assets while native and standalone packages retain local resources',()=>{

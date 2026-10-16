@@ -125,7 +125,7 @@ import { preparePrint, printDocument, type PrintPage } from "./printing";
 import { InstallApp } from "./InstallApp";
 import { formatRichNode, hasRichMark } from "@prisma/writer/rich-format";
 const safeName = (s: string) =>
-  s.replace(/\.(pdf|prisma)$/i, "").replace(/[<>:"/\\|?*\x00-\x1f]/g, "-") ||
+  s.replace(/\.(pdf|auralis)$/i, "").replace(/[<>:"/\\|?*\x00-\x1f]/g, "-") ||
   "Mi documento";
 const palette = [
   "#20273a",
@@ -592,7 +592,7 @@ export default function Studio() {
           );
           return;
         }
-        if (/\.(?:prisma|auralis)$/i.test(f.name)) {
+        if (/\.auralis$/i.test(f.name)) {
           if (append || files.length > 1)
             throw new Error("Abre un solo proyecto .auralis.");
           next = await readProject(new Uint8Array(await f.arrayBuffer()));
@@ -1649,7 +1649,7 @@ export default function Studio() {
         ref={openInput}
         hidden
         type="file"
-        accept=".pdf,.docx,.docm,.txt,.auralis,.prisma,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/vnd.prisma.project+json,application/json,application/octet-stream"
+        accept=".pdf,.docx,.docm,.txt,.auralis,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,application/x-auralis-folio,application/x-auralis-scribe,application/json,application/octet-stream"
         multiple
         onChange={(e) => void openFiles(e.target.files)}
       />
@@ -3424,7 +3424,7 @@ export default function Studio() {
                 <p>
                   <b>Continuar después:</b> la última sesión se guarda
                   automáticamente. Guarda proyectos en la biblioteca o una copia
-                  .prisma para abrirla en otro dispositivo.
+                  .auralis para abrirla en otro dispositivo.
                 </p>
                 <p>
                   <b>Atajos:</b> Ctrl+S guarda el proyecto; Ctrl+Mayús+S guarda

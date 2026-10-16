@@ -8,7 +8,7 @@
     },
     "writer": {
       "repository": "OscarD0823/auralis-scribe",
-      "commit": "073c77a22c6fb51c063104379934fbe130e4e0b3"
+      "commit": "9f7a4bd257990e3c4a401df18779c850ba2d394a"
     },
     "sheets": {
       "repository": "OscarD0823/auralis-orbit",
@@ -16,7 +16,7 @@
     },
     "slides": {
       "repository": "OscarD0823/auralis-nova",
-      "commit": "656ac13d71633b349c236c2c587b2bb754fccd87"
+      "commit": "0732850ebf6129a2880d23cf8d9320da76cc840c"
     },
     "data": {
       "repository": "OscarD0823/auralis-nexus",
@@ -28,11 +28,11 @@
     },
     "architecture": {
       "repository": "OscarD0823/auralis-atlas",
-      "commit": "73d631bbb7827d221ef5bb35df6d49fe5e26dae9"
+      "commit": "93e920815d73b2378d8d3563529d66614bb162e5"
     },
     "stories": {
       "repository": "OscarD0823/auralis-lore",
-      "commit": "c9e153edd61bb7263546537127ae439a89b870b5"
+      "commit": "5add6adb954b44a3000ba31d9f203376e2fd8e13"
     }
   }
 }

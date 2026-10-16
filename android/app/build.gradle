@@ -8,8 +8,8 @@ android {
         applicationId "com.oscard.prismapdf"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 80000
-        versionName "8.0.0"
+        versionCode 80001
+        versionName "8.0.1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -22,16 +22,16 @@ android {
         pdf {
             dimension 'product'
             applicationId 'com.oscard.prismapdf'
-            versionCode 80000
-            versionName '8.0.0'
+            versionCode 80001
+            versionName '8.0.1'
             resValue 'string', 'app_name', 'Auralis Folio'
             resValue 'string', 'title_activity_main', 'Auralis Folio'
         }
         writer {
             dimension 'product'
             applicationId 'com.oscard.prismawriter'
-            versionCode 30000
-            versionName '3.0.0'
+            versionCode 30001
+            versionName '3.0.1'
             resValue 'string', 'app_name', 'Auralis Scribe'
             resValue 'string', 'title_activity_main', 'Auralis Scribe'
         }
@@ -46,8 +46,8 @@ android {
         slides {
             dimension 'product'
             applicationId 'com.oscard.prismaslides'
-            versionCode 20000
-            versionName '2.0.0'
+            versionCode 20001
+            versionName '2.0.1'
             resValue 'string', 'app_name', 'Auralis Nova'
             resValue 'string', 'title_activity_main', 'Auralis Nova'
         }
@@ -62,32 +62,32 @@ android {
         publisher {
             dimension 'product'
             applicationId 'com.oscard.prismapublisher'
-            versionCode 20000
-            versionName '2.0.0'
+            versionCode 20001
+            versionName '2.0.1'
             resValue 'string', 'app_name', 'Auralis Canvas'
             resValue 'string', 'title_activity_main', 'Auralis Canvas'
         }
         architecture {
             dimension 'product'
             applicationId 'com.oscard.prismaarquitectura'
-            versionCode 400
-            versionName '0.4.0'
+            versionCode 401
+            versionName '0.4.1'
             resValue 'string', 'app_name', 'Auralis Atlas'
             resValue 'string', 'title_activity_main', 'Auralis Atlas'
         }
         stories {
             dimension 'product'
             applicationId 'com.oscard.asteorialore'
-            versionCode 20000
-            versionName '2.0.0'
+            versionCode 20001
+            versionName '2.0.1'
             resValue 'string', 'app_name', 'Auralis Lore'
             resValue 'string', 'title_activity_main', 'Auralis Lore'
         }
         prisma {
             dimension 'product'
             applicationId 'com.oscard.prisma'
-            versionCode 30001
-            versionName '3.0.1'
+            versionCode 30002
+            versionName '3.0.2'
             resValue 'string', 'app_name', 'Auralis'
             resValue 'string', 'title_activity_main', 'Auralis'
         }

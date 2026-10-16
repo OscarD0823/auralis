@@ -1,4 +1,5 @@
 import { isEditorKind, type EditorKind } from './product-core';
+import fileFormats from '../file-formats.json';
 export type Launch = { editor: EditorKind; action: 'file' | 'recent' | 'template'; file?: File; id?: string };
 async function database(): Promise<IDBDatabase> {
   return new Promise((resolve, reject) => {
@@ -34,18 +35,13 @@ export async function takeLaunch(token: string, editor: EditorKind): Promise<Lau
   } finally { db.close(); }
 }
 export function editorForFile(name: string): EditorKind | undefined {
-  const extension = name.toLowerCase().split('.').at(-1) ?? '';
-  if(['lore','auralis-lore'].includes(extension))return 'stories';
-  if(['prismapub','auralis-canvas'].includes(extension))return 'publisher';
-  if(['atlas','prisma-arquitectura','auralis-atlas'].includes(extension))return 'architecture';
-  if (['pdf', 'prisma','auralis'].includes(extension)) return 'pdf';
-  if (['docx', 'docm', 'txt'].includes(extension)) return 'writer';
-  if (['xlsx', 'xlsm', 'csv', 'tsv'].includes(extension)) return 'sheets';
-  if (['pptx', 'pptm'].includes(extension)) return 'slides';
-  if (['sqlite', 'sqlite3', 'db'].includes(extension)) return 'data';
+  const extension = '.' + (name.toLowerCase().split('.').at(-1) ?? '');
+  for (const [kind, formats] of Object.entries(fileFormats)) {
+    if (isEditorKind(kind) && Object.values(formats).flat().includes(extension)) return kind;
+  }
 }
 export async function editorForLaunchFile(file:File):Promise<EditorKind|undefined>{
-  if(/\.(?:prisma|auralis)$/i.test(file.name)&&file.size<=160*1024*1024){
+  if(/\.auralis$/i.test(file.name)&&file.size<=160*1024*1024){
     try{const project=JSON.parse(await file.text());if(['prisma-pdf','auralis-project'].includes(project?.format)&&project?.workspace?.flow)return 'writer';}catch{/* The editor reports malformed projects. */}
   }
   return editorForFile(file.name);
