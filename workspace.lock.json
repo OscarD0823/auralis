@@ -4,7 +4,7 @@
   "apps": {
     "pdf": {
       "repository": "OscarD0823/auralis-folio",
-      "commit": "df80a124f57d2a66f1d7188f7a97526fabe92aba"
+      "commit": "52a10bb430ffa92f81262d62fdee5bd89e98589c"
     },
     "writer": {
       "repository": "OscarD0823/auralis-scribe",

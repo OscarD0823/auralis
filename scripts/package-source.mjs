@@ -61,6 +61,7 @@ const files = [
   ".github",
   "android",
   "public/logo.svg",
+  "public/constellation.svg",
   "public/icons",
   "public/fonts",
   "public/manifest.webmanifest",

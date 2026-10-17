@@ -194,6 +194,8 @@ export async function readProject(bytes: Uint8Array): Promise<Workspace> {
     )
       throw new Error("Una página del proyecto no es válida.");
     ids.add(p.id);
+    if(p.size!==undefined&&(!Array.isArray(p.size)||p.size.length!==2||p.size.some(n=>typeof n!=='number'||!Number.isFinite(n)||n<=0)))
+      throw new Error('El tamaño de una página del proyecto no es válido.');
     if (p.originalText !== undefined) {
       if (!Array.isArray(p.originalText) || p.originalText.length > 100000)
         throw new Error("Texto original del proyecto no válido.");
