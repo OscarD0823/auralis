@@ -1604,16 +1604,14 @@ export default function Studio() {
         if (!paper) return;
         const rect = paper.getBoundingClientRect();
         const scale = rect.width / paper.offsetWidth;
-        const y=(stage.current.getBoundingClientRect().top+80-rect.top)/scale;
-        setWritingActivePage(
-          Math.max(
-            0,
-            Math.min(
-              writingPages - 1,
-              Math.max(0,writingGeometry.findIndex((page,i)=>y>=page.top&&(!writingGeometry[i+1]||y<writingGeometry[i+1].top))),
-            ),
-          ),
-        );
+        const viewport=stage.current.getBoundingClientRect();
+        const top=(viewport.top-rect.top)/scale,bottom=(viewport.bottom-rect.top)/scale;
+        let visiblePage=0,visibleHeight=-1;
+        writingGeometry.forEach((page,i)=>{
+          const height=Math.max(0,Math.min(bottom,page.top+page.height)-Math.max(top,page.top));
+          if(height>visibleHeight){visibleHeight=height;visiblePage=i;}
+        });
+        setWritingActivePage(Math.min(writingPages-1,visiblePage));
         return;
       }
       const top = stage.current.getBoundingClientRect().top + 80;
