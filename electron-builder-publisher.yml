@@ -4,7 +4,7 @@ directories:
   output: release-publisher
 extraMetadata:
   name: asteoria-publisher
-  version: 2.0.2
+  version: 2.0.3
   prismaProduct: publisher
 fileAssociations: [{"ext":"auralis-canvas","mimeType":"application/x-auralis-canvas","name":"Auralis Canvas · .auralis-canvas","role":"Editor"},{"ext":"pptx","mimeType":"application/vnd.openxmlformats-officedocument.presentationml.presentation","name":"Auralis Canvas · .pptx","role":"Editor"}]
 files:

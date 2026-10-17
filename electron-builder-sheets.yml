@@ -4,7 +4,7 @@ directories:
   output: release-sheets
 extraMetadata:
   name: asteoria-sheets
-  version: 2.0.1
+  version: 2.0.2
   prismaProduct: sheets
 fileAssociations: [{"ext":"xlsx","mimeType":"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","name":"Auralis Orbit · .xlsx","role":"Editor"},{"ext":"xlsm","mimeType":"application/vnd.ms-excel.sheet.macroEnabled.12","name":"Auralis Orbit · .xlsm","role":"Editor"},{"ext":"csv","mimeType":"text/csv","name":"Auralis Orbit · .csv","role":"Editor"},{"ext":"tsv","mimeType":"text/tab-separated-values","name":"Auralis Orbit · .tsv","role":"Editor"}]
 files:

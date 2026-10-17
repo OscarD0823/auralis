@@ -4,7 +4,7 @@ directories:
   output: release-slides
 extraMetadata:
   name: asteoria-slides
-  version: 2.0.2
+  version: 2.0.3
   prismaProduct: slides
 fileAssociations: [{"ext":"pptx","mimeType":"application/vnd.openxmlformats-officedocument.presentationml.presentation","name":"Auralis Nova · .pptx","role":"Editor"},{"ext":"pptm","mimeType":"application/vnd.ms-powerpoint.presentation.macroEnabled.12","name":"Auralis Nova · .pptm","role":"Editor"}]
 files:

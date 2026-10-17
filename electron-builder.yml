@@ -4,7 +4,7 @@ directories:
   output: release
 extraMetadata:
   name: asteoria-pdf
-  version: 8.0.2
+  version: 8.0.3
   prismaProduct: pdf
 fileAssociations: [{"ext":"auralis","mimeType":"application/x-auralis-folio","name":"Auralis Folio · .auralis","role":"Editor"},{"ext":"pdf","mimeType":"application/pdf","name":"Auralis Folio · .pdf","role":"Editor"}]
 files:
