@@ -25,7 +25,7 @@ Una cabecera repetida debe ser un prefijo continuo de la tabla. Las combinacione
 
 Distribuir columnas conserva texto, combinaciones y estructura. La alineación vertical ofrece arriba, centro y abajo, se conserva en el proyecto y se intercambia mediante `vAlign`.
 
-Word abrió la muestra de 45 registros y la exportó a un PDF de tres páginas. En las tres se repiten las dos filas de cabecera y cada registro aparece exactamente una vez. El editor y el PDF propio también producen tres páginas, pero distribuyen los registros de forma diferente: no se declara paginación idéntica. En esta muestra el encabezado general de página no apareció en las continuaciones del PDF de Word; queda pendiente aislar y corregir esa diferencia, separada de las cabeceras de tabla verificadas.
+Word abrió la muestra de 45 registros y la exportó a un PDF de tres páginas. En las tres se repiten las dos filas de cabecera y cada registro aparece exactamente una vez. También se comprobaron los encabezados generales mediante extracción de texto y renderizado a escala doble: están presentes en las tres hojas. La captura inicial reducida no permitía apreciarlos; no era un defecto de exportación. El editor y el PDF propio también producen tres páginas, pero distribuyen los registros de forma diferente: no se declara paginación idéntica.
 
 Las propiedades de división permiten conservar el ajuste existente de cada fila, mantener completas las que quepan o permitir su continuación entre páginas. Se aplican al DOCX mediante `cantSplit` y al PDF propio. La escritura mantiene juntas las filas normales; la división visual de una fila mayor que la hoja sigue pendiente. No se presenta como una función terminada de paginación equivalente.
 
