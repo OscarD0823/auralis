@@ -1,4 +1,15 @@
+import groovy.json.JsonSlurper
+
 apply plugin: 'com.android.application'
+
+// One catalog supplies web, Windows and Android versions. Preserve existing IDs.
+def auralisProducts = new JsonSlurper().parse(rootProject.file('../products.json'))
+def auralisVersionCode = { String version ->
+    def parts = version.tokenize('.').collect { it.toInteger() }
+    if (parts.size() != 3 || parts[1] > 99 || parts[2] > 99) throw new GradleException('Invalid Auralis version: ' + version)
+    parts[0] * 10000 + parts[1] * 100 + parts[2]
+}
+
 
 android {
     buildFeatures { buildConfig true }
@@ -8,8 +19,8 @@ android {
         applicationId "com.oscard.prismapdf"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 80002
-        versionName "8.0.2"
+        versionCode auralisVersionCode(auralisProducts.pdf.version)
+        versionName auralisProducts.pdf.version
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         aaptOptions {
              // Files and dirs to omit from the packaged assets dir, modified to accommodate modern web apps.
@@ -22,72 +33,72 @@ android {
         pdf {
             dimension 'product'
             applicationId 'com.oscard.prismapdf'
-            versionCode 80002
-            versionName '8.0.2'
+            versionCode auralisVersionCode(auralisProducts.pdf.version)
+            versionName auralisProducts.pdf.version
             resValue 'string', 'app_name', 'Auralis Folio'
             resValue 'string', 'title_activity_main', 'Auralis Folio'
         }
         writer {
             dimension 'product'
             applicationId 'com.oscard.prismawriter'
-            versionCode 30002
-            versionName '3.0.2'
+            versionCode auralisVersionCode(auralisProducts.writer.version)
+            versionName auralisProducts.writer.version
             resValue 'string', 'app_name', 'Auralis Scribe'
             resValue 'string', 'title_activity_main', 'Auralis Scribe'
         }
         sheets {
             dimension 'product'
             applicationId 'com.oscard.prismasheets'
-            versionCode 20001
-            versionName '2.0.1'
+            versionCode auralisVersionCode(auralisProducts.sheets.version)
+            versionName auralisProducts.sheets.version
             resValue 'string', 'app_name', 'Auralis Orbit'
             resValue 'string', 'title_activity_main', 'Auralis Orbit'
         }
         slides {
             dimension 'product'
             applicationId 'com.oscard.prismaslides'
-            versionCode 20002
-            versionName '2.0.2'
+            versionCode auralisVersionCode(auralisProducts.slides.version)
+            versionName auralisProducts.slides.version
             resValue 'string', 'app_name', 'Auralis Nova'
             resValue 'string', 'title_activity_main', 'Auralis Nova'
         }
         data {
             dimension 'product'
             applicationId 'com.oscard.prismadata'
-            versionCode 20001
-            versionName '2.0.1'
+            versionCode auralisVersionCode(auralisProducts.data.version)
+            versionName auralisProducts.data.version
             resValue 'string', 'app_name', 'Auralis Nexus'
             resValue 'string', 'title_activity_main', 'Auralis Nexus'
         }
         publisher {
             dimension 'product'
             applicationId 'com.oscard.prismapublisher'
-            versionCode 20002
-            versionName '2.0.2'
+            versionCode auralisVersionCode(auralisProducts.publisher.version)
+            versionName auralisProducts.publisher.version
             resValue 'string', 'app_name', 'Auralis Canvas'
             resValue 'string', 'title_activity_main', 'Auralis Canvas'
         }
         architecture {
             dimension 'product'
             applicationId 'com.oscard.prismaarquitectura'
-            versionCode 402
-            versionName '0.4.2'
+            versionCode auralisVersionCode(auralisProducts.architecture.version)
+            versionName auralisProducts.architecture.version
             resValue 'string', 'app_name', 'Auralis Atlas'
             resValue 'string', 'title_activity_main', 'Auralis Atlas'
         }
         stories {
             dimension 'product'
             applicationId 'com.oscard.asteorialore'
-            versionCode 20002
-            versionName '2.0.2'
+            versionCode auralisVersionCode(auralisProducts.stories.version)
+            versionName auralisProducts.stories.version
             resValue 'string', 'app_name', 'Auralis Lore'
             resValue 'string', 'title_activity_main', 'Auralis Lore'
         }
         prisma {
             dimension 'product'
             applicationId 'com.oscard.prisma'
-            versionCode 30003
-            versionName '3.0.3'
+            versionCode auralisVersionCode(auralisProducts.prisma.version)
+            versionName auralisProducts.prisma.version
             resValue 'string', 'app_name', 'Auralis'
             resValue 'string', 'title_activity_main', 'Auralis'
         }

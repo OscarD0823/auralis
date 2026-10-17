@@ -16,4 +16,11 @@ test('Windows installer metadata uses the same product versions as web and Andro
   assert.equal(config.match(/^productName:\s*(.+)$/m)?.[1].trim(),products[kind].name);
  }
  assert.deepEqual([...covered].sort(),Object.keys(products).sort());
+ const android=fs.readFileSync('android/app/build.gradle','utf8');
+ assert(android.includes("new JsonSlurper().parse(rootProject.file('../products.json'))"));
+ assert(!/versionName\s+['"]\d/.test(android),'Android must read versions from the shared catalog');
+ for(const kind of Object.keys(products)){
+  assert(android.includes(`versionName auralisProducts.${kind}.version`));
+  assert(android.includes(`versionCode auralisVersionCode(auralisProducts.${kind}.version)`));
+ }
 });
