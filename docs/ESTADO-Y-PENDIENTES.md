@@ -1,4 +1,16 @@
-# Estado y pendientes de Prisma — 13 de octubre de 2026
+# Estado y pendientes de Auralis
+
+## Avance del 16 de octubre de 2026
+
+La apertura incorpora constelaciones y una vista inicial de la primera página. En PDF se muestra el original; en DOCX es una vista provisional, limitada a los primeros bloques, mientras se conserva el original completo y se prepara el editor. Los documentos extensos se incorporan al editor por lotes, con edición deshabilitada durante esa preparación para impedir guardar un modelo parcial.
+
+Scribe y el editor de documentos de Folio/Auralis incorporan «Mantener con el siguiente», «Mantener las líneas juntas» y «Salto de página anterior». Se importan las propiedades heredadas de los estilos y sus anulaciones explícitas, y se conservan al exportar DOCX. Los títulos usan las dos primeras opciones de forma predeterminada. El planificador evita separar los grupos que caben en una página, sin intentar mantener juntos grupos mayores que la página.
+
+Los nueve iconos de documentos y del entorno general comparten el acabado de aurora, materiales y volumen, con un símbolo propio por herramienta. Los proyectos de juegos conservan sus logos.
+
+AUD-053 continúa en curso: estas mejoras no acreditan paginación idéntica para todo DOCX. Siguen pendientes fidelidad avanzada de tablas y secciones, revisión completa, combinación de documentos y el resto de puntos registrados. La numeración y la evidencia de la auditoría anterior se conservan.
+
+## Registro anterior
 
 Los 130 puntos de la revisión de Prisma permanecen registrados con sus identificadores en COMPROBACIONES.md y auditoria-prisma.json. Cada función conserva su estado y evidencia; abrir un formato no demuestra que se puedan editar todas sus características.
 

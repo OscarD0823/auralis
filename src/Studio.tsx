@@ -1,5 +1,6 @@
 import {useLocalAutosave} from './useLocalAutosave';
 import {DocumentLoading} from './DocumentLoading';
+import {InitialPagePreview,type OpeningPreview} from './InitialPagePreview';
 import {yieldToDevice} from './task-yield';
 import {TemplateGallery} from './TemplateGallery';
 import {createFlowTemplate} from '@prisma/writer/flow-templates';
@@ -151,6 +152,7 @@ type Dialog =
   | "help"
   | "table"
   | "link"
+  | "paragraph"
   | null;
 export default function Studio() {
   const [pdfWorkbench,setPdfWorkbench]=useState(false);
@@ -192,6 +194,7 @@ export default function Studio() {
     [notice, setNotice] = useState(""),
     [saved, setSaved] = useState("Guardado local"),
     [dialog, setDialog] = useState<Dialog>(null);
+  const [openingPreview,setOpeningPreview]=useState<OpeningPreview>();
   const [pending, setPending] = useState<{
       data: string;
       ratio: number;
@@ -530,7 +533,7 @@ export default function Studio() {
   }, [dialog]);
   async function enter(next: Workspace) {
     if(!home)await autosave.flush();
-    await clearPdfCache();
+    await releaseUnusedSources(next.sources.map(source=>source.id));
     flowJob.current++;
     state.current = next;
     setWorkspace(next);
@@ -567,6 +570,7 @@ export default function Studio() {
   }
   async function openFiles(files: FileList | File[] | null, append = false) {
     if (!files?.length) return;
+    setOpeningPreview(undefined);
     setBusy(append ? "Uniendo PDF…" : "Abriendo documento…");
     await yieldToDevice();
     try {
@@ -583,7 +587,9 @@ export default function Studio() {
           if (append || files.length !== 1)
             throw new Error("Abre un solo documento DOCX, DOCM o TXT.");
           const imported = /\.(docx|docm)$/i.test(f.name)
-            ? await importOfficeDocx(new Uint8Array(await f.arrayBuffer()))
+            ? await importOfficeDocx(new Uint8Array(await f.arrayBuffer()),flow=>{
+                setOpeningPreview({name:f.name,flow});setBusy('Preparando el documento para editar…');
+              })
             : { flow: importText(await f.text()), warnings: [] };
           const name = f.name.replace(/\.[^.]+$/, "");
           const {fonts: importedFonts,...flow}=imported.flow;
@@ -609,11 +615,12 @@ export default function Studio() {
         total += f.size;
         if (total > 100 * 1024 * 1024)
           throw new Error("Usa documentos de hasta 100 MB en total.");
-        next = await appendPdf(
-          next,
-          new Uint8Array(await f.arrayBuffer()),
-          f.name,
-        );
+        const bytes=new Uint8Array(await f.arrayBuffer()),sourceId=uid();
+        if(!append&&f===files[0]){
+          setOpeningPreview({name:f.name,source:{id:sourceId,name:f.name,bytes}});
+          await yieldToDevice();
+        }
+        next = await appendPdf(next,bytes,f.name,sourceId);
       }
       if (append) {
         commit(next);
@@ -624,6 +631,8 @@ export default function Studio() {
       fail(e);
     } finally {
       setBusy("");
+      setOpeningPreview(undefined);
+      void releaseUnusedSources(state.current.sources.map(source=>source.id));
       if (openInput.current) openInput.current.value = "";
       if (mergeInput.current) mergeInput.current.value = "";
     }
@@ -2234,7 +2243,7 @@ export default function Studio() {
                         ))}
                       </select>
                     </div>
-                    <small>Párrafo</small>
+                    <Button title="Opciones de párrafo y saltos de página" disabled={!rich||!writing} onClick={()=>setDialog('paragraph')}>Párrafo · opciones</Button>
                   </div>
                   <div className="ribbon-group">
                     {!writing && (
@@ -3034,7 +3043,7 @@ export default function Studio() {
         </div>
       )}
       {busy && (
-        <DocumentLoading label={busy} overlay/>
+        <DocumentLoading label={busy} overlay preview={openingPreview&&<InitialPagePreview preview={openingPreview}/>}/>
       )}
       {dialog === "signature" && (
         <Signature
@@ -3080,7 +3089,18 @@ export default function Studio() {
                 <X size={20} />
               </Button>
             </div>
-            {dialog === "export" ? (
+            {dialog === 'paragraph' ? <>
+              <h2 id="dialog-title">Párrafo y paginación</h2>
+              <p>Aplica estas opciones a los párrafos seleccionados. Se conservan al exportar a DOCX.</p>
+              {([['keepNext','Mantener con el siguiente'],['keepLines','Mantener las líneas juntas'],['breakBefore','Salto de página anterior']] as const).map(([property,label])=>{
+                const type=rich?.isActive('heading')?'heading':'paragraph',attrs=rich?.getAttributes(type)??{};
+                return <label className="check" key={property}><input type="checkbox" checked={attrs[property]===true||(attrs[property]==null&&type==='heading'&&property!=='breakBefore')} onChange={event=>{
+                  rich?.chain().focus().updateAttributes('paragraph',{[property]:event.target.checked}).updateAttributes('heading',{[property]:event.target.checked}).run();setTick(value=>value+1);
+                }}/>{label}</label>;
+              })}
+              <p className="export-limit">Los títulos permanecen unidos al párrafo siguiente de forma predeterminada. Los elementos mayores que una página pueden dividirse.</p>
+              <div className="modal-actions"><Button className="primary" onClick={()=>setDialog(null)}>Listo</Button></div>
+            </> : dialog === "export" ? (
               <>
                 <h2 id="dialog-title">Tu documento, listo.</h2>
                 <p>

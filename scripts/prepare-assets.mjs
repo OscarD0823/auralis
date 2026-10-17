@@ -28,6 +28,9 @@ const suiteFeatures=Object.fromEntries(Object.keys(products).map(kind=>[kind,[
 ]]));
 for(const features of Object.values(suiteFeatures))features.unshift('Abre documentos desde el Explorador, Android y la web instalada compatible; conserva el guardado local');
 for(const features of Object.values(suiteFeatures))features.unshift('Constelaciones durante la carga, con adaptación a movimiento reducido');
+for(const features of Object.values(suiteFeatures))features.unshift('Nuevos iconos Auralis con aurora, volumen y símbolos propios de cada herramienta');
+for(const kind of ['pdf','writer','prisma'])suiteFeatures[kind].unshift('Vista previa inicial del documento durante la apertura y preparación progresiva de documentos extensos');
+for(const kind of ['writer','prisma'])suiteFeatures[kind].unshift('Opciones de párrafo: mantener con el siguiente, líneas juntas y salto anterior, con intercambio DOCX');
 for(const kind of ['pdf','writer','prisma'])suiteFeatures[kind].unshift('Apertura más fluida de documentos extensos y menor uso de memoria al recorrer páginas PDF');
 for(const target of ['stories','prisma'])suiteFeatures[target].unshift('Audiolibros neuronales locales: 19 voces en 10 idiomas, detección automática, diálogos por personaje, 264 efectos y exportación WAV/ZIP');
 for(const target of ['stories','prisma'])suiteFeatures[target].unshift('Preparación verificada del audiolibro sin conexión: aplicación, motor, efectos y voces de los capítulos; actualización web corregida');

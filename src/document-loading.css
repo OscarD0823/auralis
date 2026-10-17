@@ -11,3 +11,16 @@
 .auralis-loading--compact .auralis-loading__brand,.auralis-loading--compact .auralis-loading__detail{display:none}
 @media(max-height:450px){.auralis-loading__sky{max-height:100px}.auralis-loading__card{gap:8px}}
 @media print{.auralis-loading{display:none!important}}
+.auralis-loading--with-preview{grid-template-columns:minmax(250px,420px) auto;justify-content:center;gap:48px;overflow:auto}
+.auralis-loading--with-preview .auralis-loading__sky{max-height:190px}
+.auralis-loading__preview{margin:0;display:grid;justify-items:center;gap:12px;max-width:300px;animation:page-arrive .4s ease-out}
+.auralis-loading__preview figcaption{display:grid;gap:6px;max-width:280px}
+.auralis-loading__preview figcaption span{font-size:10px;letter-spacing:.18em;color:#9fbad8}
+.auralis-loading__preview figcaption strong{font-size:12px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.auralis-loading__paper{background:#fff;color:#20273a;border-radius:3px;overflow:hidden;text-align:left;box-shadow:0 25px 70px #0006,0 0 0 1px #c6e3ff33;position:relative}
+.auralis-loading__page-content{position:absolute;inset:0 auto auto 0;transform-origin:top left;box-sizing:border-box;font-size:12pt;line-height:1.45}
+.auralis-loading__page-content table{width:100%;border-collapse:collapse}.auralis-loading__page-content td{border:1px solid #aab2bf;padding:3pt}
+.auralis-loading__preview small{font-size:11px;color:#a9bcd4;max-width:280px;line-height:1.5}
+@keyframes page-arrive{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@media(max-width:680px){.auralis-loading--with-preview{grid-template-columns:1fr;gap:20px;align-content:center}.auralis-loading--with-preview .auralis-loading__sky{max-height:90px}.auralis-loading--with-preview .auralis-loading__card{gap:8px}.auralis-loading--with-preview .auralis-loading__detail{display:none}.auralis-loading__preview{max-height:60dvh}.auralis-loading__paper{max-height:38dvh}.auralis-loading--with-preview strong{font-size:16px}}
+@media(prefers-reduced-motion:reduce){.auralis-loading__preview{animation:none}}

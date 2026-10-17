@@ -1,24 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256" role="img" aria-label="Prisma">
-  <defs>
-    <linearGradient id="tile" x1="25" y1="17" x2="228" y2="246" gradientUnits="userSpaceOnUse"><stop stop-color="#363954"/><stop offset=".53" stop-color="#20233e"/><stop offset="1" stop-color="#13162d"/></linearGradient>
-    <linearGradient id="paper" x1="76" y1="51" x2="184" y2="210" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset="1" stop-color="#e7ecfa"/></linearGradient>
-    <linearGradient id="fold" x1="143" y1="48" x2="185" y2="96" gradientUnits="userSpaceOnUse"><stop stop-color="#e6d4ff"/><stop offset="1" stop-color="#c5aeff"/></linearGradient>
-    <linearGradient id="accent" x1="80" y1="95" x2="188" y2="195" gradientUnits="userSpaceOnUse"><stop stop-color="#c5aeff"/><stop offset="1" stop-color="#7958de"/></linearGradient>
-    <linearGradient id="light" x1="105" y1="75" x2="189" y2="178" gradientUnits="userSpaceOnUse"><stop stop-color="#e6d4ff"/><stop offset="1" stop-color="#c5aeff"/></linearGradient>
-    <linearGradient id="deep" x1="104" y1="97" x2="191" y2="205" gradientUnits="userSpaceOnUse"><stop stop-color="#7958de"/><stop offset="1" stop-color="#20233e"/></linearGradient>
-    <radialGradient id="glow" cx="73" cy="53" r="193" gradientUnits="userSpaceOnUse"><stop stop-color="#c5aeff" stop-opacity=".22"/><stop offset="1" stop-color="#c5aeff" stop-opacity="0"/></radialGradient>
-    <filter id="shadow" x="-35%" y="-25%" width="180%" height="170%"><feDropShadow dx="0" dy="8" stdDeviation="7" flood-color="#060b20" flood-opacity=".28"/></filter>
-  </defs>
-  <rect x="4" y="4" width="248" height="248" rx="59" fill="url(#tile)"/>
-  <rect x="5" y="5" width="246" height="246" rx="58" fill="url(#glow)" stroke="#e6d4ff" stroke-opacity=".19" stroke-width="1.5"/>
-  <g filter="url(#shadow)"><path d="m128 43 76 44v88l-76 44-76-44V87Z" fill="url(#accent)"/>
-    <path d="m128 43 76 44-76 44-76-44Z" fill="url(#light)"/>
-    <path d="M128 131v88l76-44V87Z" fill="url(#deep)"/>
-    <path d="m52 87 76 44-41 22-35-22Z" fill="#a894eb"/>
-    <path d="m128 43 0 88 76-44M52 87l76 44v88" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width="1.5"/>
-    <path d="m135 51 54 31" stroke="#fff" stroke-opacity=".5" stroke-width="2" stroke-linecap="round"/>
-    <path d="M91 174v-68h33c21 0 33 10 33 28s-12 28-33 28h-14v12Zm19-29h12c11 0 16-4 16-11s-5-11-16-11h-12Z" fill="url(#paper)"/>
-    <path d="m128 43 0 23 42 24 21-8Z" fill="#b5eafa" opacity=".75"/>
-    <path d="m52 175 35-22 41 24v42Z" fill="#e6a9d1" opacity=".4"/></g>
-  <path d="m211 51 2 8 8 2-8 2-2 8-2-8-8-2 8-2Z" fill="#e6d4ff"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc"><title id="title">Auralis</title><desc id="desc">Diseño original Auralis: aurora, luz y herramientas para crear.</desc><defs>
+ <linearGradient id="tile" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#263B56"/><stop offset="1" stop-color="#0A1629"/></linearGradient>
+ <radialGradient id="glow" cx=".22" cy=".1" r="1"><stop stop-color="#A4F0DF" stop-opacity=".3"/><stop offset="1" stop-color="#ABAAFF" stop-opacity="0"/></radialGradient>
+ <linearGradient id="color" x1="0" y1="0" x2=".8" y2="1"><stop stop-color="#A4F0DF"/><stop offset="1" stop-color="#ABAAFF"/></linearGradient>
+ <linearGradient id="paper" x2=".7" y2="1"><stop stop-color="#FFFFFF"/><stop offset=".55" stop-color="#EEF4FD"/><stop offset="1" stop-color="#C7D5EA"/></linearGradient>
+ <linearGradient id="fold" x2="1" y2="1"><stop stop-color="#FFF"/><stop offset="1" stop-color="#ABAAFF"/></linearGradient>
+ <linearGradient id="metal" x2="1" y2=".7"><stop stop-color="#A4F0DF"/><stop offset=".45" stop-color="#ABAAFF"/><stop offset="1" stop-color="#263B56"/></linearGradient>
+ <filter id="shadow" x="-.3" y="-.25" width="1.6" height="1.6"><feDropShadow dx="0" dy="20" stdDeviation="18" flood-color="#020B19" flood-opacity=".45"/></filter>
+ <clipPath id="clip"><rect x="6" y="6" width="1012" height="1012" rx="228"/></clipPath></defs>
+ <g clip-path="url(#clip)"><rect width="1024" height="1024" rx="230" fill="url(#tile)"/><rect width="1024" height="1024" fill="url(#glow)"/>
+ <path d="M-90 310C148 68 397 383 666 176S1017 155 1110 64" stroke="url(#color)" stroke-width="105" opacity=".1" fill="none"/><path d="M-50 281C178 97 397 349 657 159S999 117 1095 32" stroke="url(#color)" stroke-width="15" opacity=".5" fill="none"/>
+ <path d="M141 880Q510 825 883 880" fill="none" stroke="#A4F0DF" opacity=".24" stroke-width="3"/>
+ <g filter="url(#shadow)"><ellipse cx="511" cy="541" rx="303" ry="207" transform="rotate(-27 511 541)" fill="none" stroke="url(#color)" stroke-width="21" opacity=".6"/><path d="M319 780L486 283Q503 238 532 283L709 780H605L558 635H444L401 780Z" fill="url(#paper)"/><path d="M470 548H535L502 424Z" fill="#245167"/><path d="M286 642C451 746 682 625 787 460" stroke="url(#color)" stroke-width="45" stroke-linecap="round" fill="none"/><path d="M290 632C455 736 681 616 783 457" stroke="#E4FFF5" stroke-width="6" stroke-linecap="round" fill="none"/><circle cx="789" cy="454" r="32" fill="#D7F9EE"/><path d="M284 338L292 363L318 371L292 379L284 405L276 379L250 371L276 363Z" fill="#B8E8ED"/></g><rect x="17" y="17" width="990" height="990" rx="218" fill="none" stroke="#A4F0DF" opacity=".24" stroke-width="3"/>
+ <circle cx="847" cy="842" r="8" fill="#A4F0DF"/><circle cx="875" cy="842" r="4" fill="#ABAAFF" opacity=".7"/></g></svg>
