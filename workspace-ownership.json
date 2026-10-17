@@ -18,6 +18,7 @@
     "watermarks.ts": "pdf",
     "page-insertion.ts": "pdf",
     "academic.ts": "writer",
+    "document-breaks.ts": "writer",
     "academic-catalog.ts": "writer",
     "csl-data.ts": "writer",
     "csl-format.ts": "writer",

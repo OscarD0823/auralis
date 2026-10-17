@@ -2,14 +2,14 @@
   "pdf": {
     "name": "Auralis Folio",
     "siteSlug": "auralis-folio",
-    "version": "8.0.3",
+    "version": "8.0.4",
     "description": "Editor PDF local y privado",
     "channel": "beta"
   },
   "writer": {
     "name": "Auralis Scribe",
     "siteSlug": "auralis-scribe",
-    "version": "3.0.3",
+    "version": "3.0.4",
     "description": "Documentos, escritura y trabajos académicos",
     "channel": "beta"
   },
@@ -58,7 +58,7 @@
   "prisma": {
     "name": "Auralis",
     "siteSlug": "auralis",
-    "version": "3.0.4",
+    "version": "3.0.5",
     "description": "Una nueva luz para tus ideas",
     "channel": "beta"
   }

@@ -95,6 +95,7 @@ import { renderFlow } from "@prisma/writer/flow-renderer";
 import { DocumentNavigation } from "@prisma/writer/DocumentNavigation";
 import { blankWithWatermarks, watermarkCandidate } from "@prisma/pdf/watermarks";
 import { insertBlankPage } from "@prisma/pdf/page-insertion";
+import {blankPageTransaction,type PageStart} from '@prisma/writer/document-breaks';
 import { WordTools } from "@prisma/writer/WordTools";
 import { DocumentRuler, VerticalDocumentRuler } from "@prisma/writer/DocumentRuler";
 import { selectedSection, documentSections, changeSection } from "@prisma/writer/sections";
@@ -1401,6 +1402,14 @@ export default function Studio() {
   }
   async function blank(placement = "below") {
     if (state.current.flow) {
+      if(writing&&rich&&!rich.isDestroyed) {
+        const measured=(rich.storage as unknown as {pagination?:{pageStarts:PageStart[];pageCount:number}}).pagination;
+        if(measured?.pageStarts.length){
+          rich.view.dispatch(blankPageTransaction(rich.state,measured.pageStarts,measured.pageCount,placement));
+          rich.commands.focus();
+          return;
+        }
+      }
       const flow = state.current.flow,
         block =
           writing && rich
@@ -2579,7 +2588,7 @@ export default function Studio() {
             >
               <div className="sidebar-title">
                 <span>
-                  Páginas <b>{workspace.pages.length}</b>
+                  Páginas <b>{writing ? writingPages : workspace.pages.length}</b>
                 </span>
                 {icon("Ocultar páginas", PanelLeftClose, () =>
                   setSidebar(false),
@@ -2613,7 +2622,12 @@ export default function Studio() {
                 className="page-list"
                 style={navigation ? { display: "none" } : undefined}
               >
-                {workspace.pages.map((p, i) => (
+                {writing ? Array.from({length:writingPages},(_,i)=>(
+                  <button key={'writing-'+i} className={writingActivePage===i?'active':''} aria-label={'Ir a la página '+(i+1)} onClick={()=>document.getElementById('writing-page-'+i)?.scrollIntoView({behavior:'smooth',block:'start'})}>
+                    <div className="thumbnail writing-page-thumbnail" aria-hidden="true"><FileText size={38}/><span>Página {i+1}</span></div>
+                    <span>{i+1}</span>
+                  </button>
+                )) : workspace.pages.map((p, i) => (
                   <button
                     key={p.id}
                     className={active?.id === p.id ? "active" : ""}
