@@ -96,6 +96,7 @@ import { DocumentNavigation } from "@prisma/writer/DocumentNavigation";
 import { blankWithWatermarks, watermarkCandidate } from "@prisma/pdf/watermarks";
 import { insertBlankPage } from "@prisma/pdf/page-insertion";
 import {blankPageTransaction,type PageStart} from '@prisma/writer/document-breaks';
+import {firstEditorPage,type EditorPage} from '@prisma/writer/section-pagination';
 import { WordTools } from "@prisma/writer/WordTools";
 import { DocumentRuler, VerticalDocumentRuler } from "@prisma/writer/DocumentRuler";
 import { selectedSection, documentSections, changeSection } from "@prisma/writer/sections";
@@ -178,6 +179,8 @@ export default function Studio() {
     "" | "spelling" | "characters"
   >("");
   const [writingPages, setWritingPages] = useState(1);
+  const [writingGeometry,setWritingGeometry]=useState<EditorPage[]>([]);
+  const [readingMode,setReadingMode]=useState(()=>matchMedia('(max-width:700px)').matches);
   const [writingActivePage, setWritingActivePage] = useState(0);
   const [tab, setTab] = useState("Inicio"),
     [view, setView] = useState<"write" | "pdf">("write"),
@@ -540,6 +543,7 @@ export default function Studio() {
     setWorkspace(next);
     setActiveId(next.pages[0]?.id ?? "");
     setWritingPages(1);
+    setWritingGeometry([]);
     setWritingActivePage(0);
     clear();
     setHistory({ past: [], future: [] });
@@ -1402,6 +1406,16 @@ export default function Studio() {
   }
   async function blank(placement = "below") {
     if (state.current.flow) {
+      if(readingMode&&writing&&rich&&!rich.isDestroyed){
+        setReadingMode(false);
+        let ready=false;
+        for(let i=0;i<300;i++){
+          const pagination=(rich.storage as unknown as {pagination:{layout?:PageLayout;measuredDoc?:unknown}}).pagination;
+          if(pagination.layout&&pagination.measuredDoc===rich.state.doc){ready=true;break;}
+          await new Promise(resolve=>setTimeout(resolve,50));
+        }
+        if(!ready)throw new Error('El documento sigue calculando sus páginas. Intenta insertar la hoja cuando termine.');
+      }
       if(writing&&rich&&!rich.isDestroyed) {
         const measured=(rich.storage as unknown as {pagination?:{pageStarts:PageStart[];pageCount:number}}).pagination;
         if(measured?.pageStarts.length){
@@ -1585,20 +1599,18 @@ export default function Studio() {
       scrollFrame.current = 0;
       if (!stage.current) return;
       if (writing) {
+        if(readingMode)return;
         const paper = stage.current.querySelector<HTMLElement>(".paged-paper");
         if (!paper) return;
         const rect = paper.getBoundingClientRect();
         const scale = rect.width / paper.offsetWidth;
-        const stride = ((pageSize(currentLayout)[1] * 4) / 3 + 28) * scale;
+        const y=(stage.current.getBoundingClientRect().top+80-rect.top)/scale;
         setWritingActivePage(
           Math.max(
             0,
             Math.min(
               writingPages - 1,
-              Math.floor(
-                (stage.current.getBoundingClientRect().top + 80 - rect.top) /
-                  stride,
-              ),
+              Math.max(0,writingGeometry.findIndex((page,i)=>y>=page.top&&(!writingGeometry[i+1]||y<writingGeometry[i+1].top))),
             ),
           ),
         );
@@ -1621,9 +1633,16 @@ export default function Studio() {
       if (closest) setActiveId(closest.id.slice(5));
     });
   }
+  const currentSection = workspace.flow
+    ? selectedSection(rich, workspace.flow.layout)
+    : null;
+  const currentLayout = currentSection?.layout ?? workspace.layout ?? layout;
+  const writingCanvasWidth=workspace.flow?Math.max(...documentSections(workspace.flow.content,workspace.flow.layout).map(s=>pageSize(s.layout)[0]*4/3)):pageSize(currentLayout)[0]*4/3;
+  const writingFrames=writingGeometry.length?writingGeometry:[firstEditorPage(workspace.flow?.layout??currentLayout,writingCanvasWidth)];
+  const activeWritingFrame=writingFrames[Math.min(writingActivePage,writingFrames.length-1)];
   const rw = fit
       ? Math.min(800, Math.max(240, stageWidth - 72))
-      : (595.28 * zoom) / 100,
+      : ((writing?writingCanvasWidth:595.28) * zoom) / 100,
     sf =
       rich?.getAttributes("textStyle").fontFamily ??
       rich?.getAttributes(rich.isActive("heading") ? "heading" : "paragraph")
@@ -1638,10 +1657,6 @@ export default function Studio() {
       ) ||
       selected?.size ||
       size;
-  const currentSection = workspace.flow
-    ? selectedSection(rich, workspace.flow.layout)
-    : null;
-  const currentLayout = currentSection?.layout ?? workspace.layout ?? layout;
   const icon = (
     label: string,
     Icon: React.ComponentType<{ size?: number }>,
@@ -2021,9 +2036,10 @@ export default function Studio() {
               {workspace.flow && (
                 <div className="view-switch">
                   <Button
-                    className={view === "write" ? "active" : ""}
+                    className={view === "write"&&!readingMode ? "active" : ""}
                     onClick={() => {
                       setView("write");
+                      setReadingMode(false);
                       if (
                         ["Formato de imagen", "Diseño de tabla"].includes(tab)
                       )
@@ -2033,6 +2049,7 @@ export default function Studio() {
                   >
                     Escribir
                   </Button>
+                  <Button title="Vista de lectura y edición" className={view==='write'&&readingMode?'active':''} aria-pressed={view==='write'&&readingMode} onClick={()=>{setView('write');setReadingMode(true);clear();}}>Lectura</Button>
                   <Button
                     className={view === "pdf" ? "active" : ""}
                     onClick={() => {
@@ -2588,7 +2605,7 @@ export default function Studio() {
             >
               <div className="sidebar-title">
                 <span>
-                  Páginas <b>{writing ? writingPages : workspace.pages.length}</b>
+                  {writing&&readingMode?'Lectura':<>Páginas <b>{writing ? writingPages : workspace.pages.length}</b></>}
                 </span>
                 {icon("Ocultar páginas", PanelLeftClose, () =>
                   setSidebar(false),
@@ -2622,7 +2639,7 @@ export default function Studio() {
                 className="page-list"
                 style={navigation ? { display: "none" } : undefined}
               >
-                {writing ? Array.from({length:writingPages},(_,i)=>(
+                {writing&&readingMode?<p className="reading-pages-hint">Vista continua. Elige Escribir para ver las hojas y sus márgenes.</p>:writing ? Array.from({length:writingPages},(_,i)=>(
                   <button key={'writing-'+i} className={writingActivePage===i?'active':''} aria-label={'Ir a la página '+(i+1)} onClick={()=>document.getElementById('writing-page-'+i)?.scrollIntoView({behavior:'smooth',block:'start'})}>
                     <div className="thumbnail writing-page-thumbnail" aria-hidden="true"><FileText size={38}/><span>Página {i+1}</span></div>
                     <span>{i+1}</span>
@@ -2706,79 +2723,72 @@ export default function Studio() {
               </div>
               {writing && workspace.flow ? (
                 <div
-                  className="flow-paper paged-paper"
-                  style={{
-                    width: (pageSize(currentLayout)[0] * 4) / 3,
-                    zoom: rw / ((pageSize(currentLayout)[0] * 4) / 3),
-                    minHeight: (pageSize(currentLayout)[1] * 4) / 3,
-                    height:
-                      writingPages *
-                        ((pageSize(currentLayout)[1] * 4) / 3 + 28) -
-                      28,
-                    padding: `${currentLayout.top}mm ${currentLayout.right}mm ${currentLayout.bottom}mm ${currentLayout.left}mm`,
-                  }}
+                  className={readingMode?'flow-paper reading-paper':'flow-paper paged-paper mixed-page-paper'}
+                  style={readingMode?{}:{
+                    '--writing-canvas-width':writingCanvasWidth+'px',
+                    '--writing-canvas-zoom':rw/writingCanvasWidth,
+                    '--writing-top-padding':workspace.flow.layout.top+'mm',
+                    height:writingFrames.at(-1)!.top+writingFrames.at(-1)!.height,
+                  } as React.CSSProperties}
                 >
-                  <div className="writing-page-backgrounds" aria-hidden="true">
-                    {Array.from({ length: writingPages }, (_, i) => (
+                  {!readingMode&&<div className="writing-page-backgrounds" aria-hidden="true">
+                    {writingFrames.map((frame,i) => (
                       <div
                         key={i}
                         id={"writing-page-" + i}
                         className="writing-page-sheet"
                         style={{
-                          top: i * ((pageSize(currentLayout)[1] * 4) / 3 + 28),
-                          height: (pageSize(currentLayout)[1] * 4) / 3,
+                          top:frame.top,left:frame.left,width:frame.width,height:frame.height,
                         }}
                       >
                         <span
                           className="writing-page-header"
                           style={{
-                            left: currentLayout.left + "mm",
-                            right: currentLayout.right + "mm",
+                            left: frame.layout.left + "mm",
+                            right: frame.layout.right + "mm",
                           }}
                         >
-                          {currentLayout.differentFirst && i === 0
-                            ? currentLayout.headerFirst
-                            : currentLayout.oddEven && i % 2 === 1
-                              ? (currentLayout.headerEven ??
-                                currentLayout.header)
-                              : currentLayout.header}
+                          {frame.layout.differentFirst && frame.sectionPage === 0
+                            ? frame.layout.headerFirst
+                            : frame.layout.oddEven && frame.number % 2 === 0
+                              ? (frame.layout.headerEven ?? frame.layout.header)
+                              : frame.layout.header}
                         </span>
                         <span
                           className="writing-page-footer"
                           style={{
-                            left: currentLayout.left + "mm",
-                            right: currentLayout.right + "mm",
+                            left: frame.layout.left + "mm",
+                            right: frame.layout.right + "mm",
                           }}
                         >
-                          {currentLayout.differentFirst && i === 0
-                            ? currentLayout.footerFirst
-                            : currentLayout.oddEven && i % 2 === 1
-                              ? (currentLayout.footerEven ??
-                                currentLayout.footer)
-                              : currentLayout.footer}
+                          {frame.layout.differentFirst && frame.sectionPage === 0
+                            ? frame.layout.footerFirst
+                            : frame.layout.oddEven && frame.number % 2 === 0
+                              ? (frame.layout.footerEven ?? frame.layout.footer)
+                              : frame.layout.footer}
                         </span>
-                        {currentLayout.numbering && (
+                        {frame.layout.numbering && (
                           <span
                             className={
                               "writing-page-number " +
-                              (currentLayout.pageNumberPosition ??
+                              (frame.layout.pageNumberPosition ??
                                 "footer-right")
                             }
                           >
-                            {i + (currentLayout.pageNumberStart ?? 1)}
+                            {frame.number}
                           </span>
                         )}
-                        {currentLayout.watermark?.text && (
+                        {frame.layout.watermark?.text && (
                           <div
                             className="flow-watermark"
                             style={{
-                              color: currentLayout.watermark.color,
-                              opacity: currentLayout.watermark.opacity,
-                              transform: `translate(-50%,-50%) rotate(${-currentLayout.watermark.angle}deg)`,
-                              fontSize: currentLayout.watermark.size + "pt",
+                              color: frame.layout.watermark.color,
+                              opacity: frame.layout.watermark.opacity,
+                              transform: `translate(-50%,-50%) rotate(${-frame.layout.watermark.angle}deg)`,
+                              fontSize: frame.layout.watermark.size + "pt",
                             }}
                           >
-                            {currentLayout.watermark.text}
+                            {frame.layout.watermark.text}
                           </div>
                         )}
                         <span className="writing-page-label">
@@ -2786,10 +2796,11 @@ export default function Studio() {
                         </span>
                       </div>
                     ))}
-                  </div>
-                  {showRuler && (
+                  </div>}
+                  {showRuler && !readingMode && (
+                    <div style={{position:'absolute',left:activeWritingFrame.left,top:activeWritingFrame.top,width:activeWritingFrame.width,height:0}}>
                     <DocumentRuler
-                      layout={currentLayout}
+                      layout={activeWritingFrame.layout}
                       onChange={(next) => {
                         void updateDocumentLayout(next).catch(fail);
                       }}
@@ -2814,25 +2825,24 @@ export default function Studio() {
                           .run()
                       }
                     />
+                    </div>
                   )}
-                  {showRuler && (
+                  {showRuler && !readingMode && (
                     <div
                       className="writing-rulers"
                       style={{
-                        top:
-                          writingActivePage *
-                          ((pageSize(currentLayout)[1] * 4) / 3 + 28),
+                        top:activeWritingFrame.top,left:activeWritingFrame.left,right:'auto',width:activeWritingFrame.width,
                       }}
                     >
                       <VerticalDocumentRuler
-                        layout={currentLayout}
+                        layout={activeWritingFrame.layout}
                         onChange={(next) =>
                           void updateDocumentLayout(next).catch(fail)
                         }
                       />
                       <VerticalDocumentRuler
                         side="right"
-                        layout={currentLayout}
+                        layout={activeWritingFrame.layout}
                         onChange={(next) =>
                           void updateDocumentLayout(next).catch(fail)
                         }
@@ -2850,8 +2860,9 @@ export default function Studio() {
                   )}
                   <RichEditor
                     autoFocus
-                    pageLayout={currentLayout}
+                    pageLayout={readingMode?undefined:workspace.flow.layout}
                     onPages={setWritingPages}
+                    onGeometry={setWritingGeometry}
                     showMarks={showMarks}
                     autoCorrect={autoCorrect}
                     searchQuery={searchQuery}

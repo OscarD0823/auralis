@@ -1,5 +1,7 @@
 # Saltos, secciones e índices de apéndices
 
+Informe de Scribe 3.0.4, Folio 8.0.4 y Auralis 3.0.5. La [actualización posterior](FIGURAS-Y-SECCIONES-2026-10-17.md) corrige la asociación de las siete figuras pendientes y añade geometría de papel por sección. La comparación visual con Word continúa pendiente.
+
 Se corrigieron los saltos en Scribe y en el editor compartido de Folio/Auralis:
 
 - Salto de página o sección en el cursor, conservando ambas partes del párrafo. Ctrl+Enter inserta un salto de página. Dentro de tablas y listas, el salto se coloca después del objeto completo.

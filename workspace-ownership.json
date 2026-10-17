@@ -39,6 +39,7 @@
     "rich-format.ts": "writer",
     "sections.ts": "writer",
     "pagination.ts": "writer",
+    "section-pagination.ts": "writer",
     "PaginationExtension.ts": "writer",
     "PageFrame.tsx": "writer",
     "StyleGallery.tsx": "writer",

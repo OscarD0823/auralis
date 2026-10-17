@@ -4,7 +4,7 @@ directories:
   output: release-writer
 extraMetadata:
   name: asteoria-writer
-  version: 3.0.4
+  version: 3.0.5
   prismaProduct: writer
 fileAssociations: [{"ext":"auralis","mimeType":"application/x-auralis-scribe","name":"Auralis Scribe · .auralis","role":"Editor"},{"ext":"docx","mimeType":"application/vnd.openxmlformats-officedocument.wordprocessingml.document","name":"Auralis Scribe · .docx","role":"Editor"},{"ext":"docm","mimeType":"application/vnd.ms-word.document.macroEnabled.12","name":"Auralis Scribe · .docm","role":"Editor"},{"ext":"txt","mimeType":"text/plain","name":"Auralis Scribe · .txt","role":"Editor"}]
 files:
