@@ -2802,7 +2802,7 @@ export default function Studio() {
                     <DocumentRuler
                       layout={activeWritingFrame.layout}
                       onChange={(next) => {
-                        void updateDocumentLayout(next).catch(fail);
+                        void updateDocumentLayout(next,activeWritingFrame.sectionId).catch(fail);
                       }}
                       firstLine={
                         Number(
@@ -2837,14 +2837,14 @@ export default function Studio() {
                       <VerticalDocumentRuler
                         layout={activeWritingFrame.layout}
                         onChange={(next) =>
-                          void updateDocumentLayout(next).catch(fail)
+                          void updateDocumentLayout(next,activeWritingFrame.sectionId).catch(fail)
                         }
                       />
                       <VerticalDocumentRuler
                         side="right"
                         layout={activeWritingFrame.layout}
                         onChange={(next) =>
-                          void updateDocumentLayout(next).catch(fail)
+                          void updateDocumentLayout(next,activeWritingFrame.sectionId).catch(fail)
                         }
                       />
                     </div>
