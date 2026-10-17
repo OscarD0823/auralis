@@ -1,5 +1,9 @@
 # Estado y pendientes de Auralis
 
+## Avance del 17 de octubre de 2026
+
+Las [comprobaciones de Office y las mejoras de tablas e índices](OFFICE-FUNCIONES-2026-10-17.md) registran el siguiente bloque. El acceso a Word volvió a funcionar y se confirmó la corrección del intercambio de títulos y apéndices en una muestra de seis páginas. AUD-053 sigue en curso: no se declara paginación equivalente para todos los documentos ni división visual completa de filas altas. Los otros puntos conservan sus estados y criterios.
+
 ## Avance del 16 de octubre de 2026
 
 La apertura incorpora constelaciones y una vista inicial de la primera página. En PDF se muestra el original; en DOCX es una vista provisional, limitada a los primeros bloques, mientras se conserva el original completo y se prepara el editor. Los documentos extensos se incorporan al editor por lotes, con edición deshabilitada durante esa preparación para impedir guardar un modelo parcial.

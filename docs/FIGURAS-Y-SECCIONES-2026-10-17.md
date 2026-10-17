@@ -1,5 +1,7 @@
 # Figuras, secciones y lectura adaptable
 
+Informe de la entrega anterior. La [comprobación posterior en Word](OFFICE-FUNCIONES-2026-10-17.md) encontró y corrigió el conflicto de estilos de apéndice; el control de Word volvió a funcionar para esa prueba.
+
 Actualización BETA: Scribe 3.0.5, Folio 8.0.5 y Auralis 3.0.6.
 
 ## Correcciones
