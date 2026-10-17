@@ -17,7 +17,9 @@ El índice de figuras aún requiere trabajo: 51 campos SEQ de figura en la refer
 
 ## Verificación
 
-Se añadieron pruebas de transacciones reales de ProseMirror y de ida y vuelta DOCX: posición del cursor, límites de hojas vacías, texto entre saltos repetidos, títulos personalizados, apéndices dinámicos, marcadores, paridad, orientación y reinicio de numeración. El conjunto pasó 301 pruebas TypeScript y 15 JavaScript antes de la revisión visual final.
+Se añadieron pruebas de transacciones reales de ProseMirror y de ida y vuelta DOCX: posición del cursor, límites de hojas vacías, texto entre saltos repetidos, títulos personalizados, apéndices dinámicos, marcadores, paridad, orientación y reinicio de numeración. El conjunto pasó 301 pruebas TypeScript y 15 JavaScript; después se verificó también la herencia real de encabezados de secciones vinculadas (317 casos en total).
+
+La prueba en Edge automatizado comprobó Ctrl+Enter, deshacer, insertar página vacía desde el diálogo y crear una sección continua. Se inspeccionaron las seis páginas del documento de prueba en el editor. El DOCX conserva la orientación por sección; la superficie de escritura todavía usa un lienzo común y no reproduce completamente un documento que mezcla páginas verticales y horizontales. La vista PDF es la referencia del diseño de exportación de Auralis.
 
 El control nativo de Word no pudo iniciarse: `failed to write kernel assets (os error 3)` incluso después de reiniciar el ayudante. Tampoco existe una sesión conectada de Word. El renderizador de DOCX no encontró `soffice.exe`. Por tanto, la verificación en Word y la comparación de su renderizado permanecen pendientes; las pruebas XML/ida y vuelta y las del navegador no sustituyen esa verificación.
 
