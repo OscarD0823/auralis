@@ -18,6 +18,7 @@ const proofingInterop = () => ({
   },
 });
 export default defineConfig({
+  cacheDir: '.prisma/vite-'+(process.env.VITE_PRODUCT??'pdf'),
   publicDir: architectureStandalone ? false : 'public',
   resolve: {alias: {'@prisma/active-app':activeEntry(process.cwd(),process.env.VITE_PRODUCT??'pdf'),...moduleAliases(process.cwd())}},
   plugins: [

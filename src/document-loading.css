@@ -1,0 +1,13 @@
+.auralis-loading{display:grid;place-items:center;min-height:100dvh;padding:24px;box-sizing:border-box;background:radial-gradient(ellipse at 25% 20%,#20375c 0,transparent 60%),radial-gradient(ellipse at 80% 90%,#252046 0,transparent 60%),#080e20;color:#f0f4ff;font-family:system-ui,sans-serif;text-align:center;isolation:isolate}
+.auralis-loading--overlay{position:fixed;inset:0;z-index:10000;background:#080e20ed;min-height:0}
+.auralis-loading__card{display:flex;flex-direction:column;align-items:center;width:min(100%,440px);gap:14px}
+.auralis-loading__sky{display:block;width:min(100%,400px);height:auto;max-height:32dvh;object-fit:contain}
+.auralis-loading__brand{font-size:11px;letter-spacing:.38em;color:#b6c7f7;font-weight:600}
+.auralis-loading strong{font-size:clamp(17px,3vw,23px);line-height:1.4;font-weight:550;overflow-wrap:anywhere}
+.auralis-loading__detail{font-size:12px;line-height:1.5;color:#9cabc8}
+.auralis-loading button{border:1px solid #65739c;border-radius:10px;background:#202c48;color:#fff;padding:10px 18px;cursor:pointer}
+.auralis-loading--compact{min-height:230px;border-radius:12px;padding:18px}
+.auralis-loading--compact .auralis-loading__sky{max-height:105px}
+.auralis-loading--compact .auralis-loading__brand,.auralis-loading--compact .auralis-loading__detail{display:none}
+@media(max-height:450px){.auralis-loading__sky{max-height:100px}.auralis-loading__card{gap:8px}}
+@media print{.auralis-loading{display:none!important}}

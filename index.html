@@ -14,11 +14,12 @@
     <link rel="icon" type="image/svg+xml" href="./logo.svg" />
     <link rel="apple-touch-icon" href="./icons/prisma-192.png" />
     <link rel="stylesheet" href="/fonts/fonts.css" />
+    <link rel="stylesheet" href="/src/document-loading.css" />
     <link rel="manifest" href="./manifest.webmanifest" />
     <title>Auralis Folio · De documento a posibilidad</title>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root"><div class="auralis-loading" role="status" aria-busy="true"><div class="auralis-loading__card"><img class="auralis-loading__sky" src="/constellation.svg" alt="" width="400" height="220"/><span class="auralis-loading__brand">AURALIS</span><strong>Preparando tu espacio…</strong><span class="auralis-loading__detail">Tu trabajo permanece en este dispositivo</span></div></div></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>

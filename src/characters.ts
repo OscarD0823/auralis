@@ -93,10 +93,12 @@ export function inspectCharacters(
   return [...result.values()].sort((a, b) => a.point - b.point);
 }
 export function graphemeCount(text: string) {
-  if (typeof Intl.Segmenter === "function")
-    return [
-      ...new Intl.Segmenter("es", { granularity: "grapheme" }).segment(text),
-    ].length;
+  if (typeof Intl.Segmenter === "function") {
+    let count=0;
+    // Keep one segment at a time instead of retaining an object per character.
+    for (const _segment of new Intl.Segmenter("es", { granularity: "grapheme" }).segment(text))count++;
+    return count;
+  }
   return Array.from(text).length;
 }
 let unicodeNames: Promise<Map<number, string>> | undefined;

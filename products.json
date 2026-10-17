@@ -2,63 +2,63 @@
   "pdf": {
     "name": "Auralis Folio",
     "siteSlug": "auralis-folio",
-    "version": "8.0.1",
+    "version": "8.0.2",
     "description": "Editor PDF local y privado",
     "channel": "beta"
   },
   "writer": {
     "name": "Auralis Scribe",
     "siteSlug": "auralis-scribe",
-    "version": "3.0.1",
+    "version": "3.0.2",
     "description": "Documentos, escritura y trabajos académicos",
     "channel": "beta"
   },
   "sheets": {
     "name": "Auralis Orbit",
     "siteSlug": "auralis-orbit",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Hojas de cálculo, fórmulas y datos",
     "channel": "beta"
   },
   "slides": {
     "name": "Auralis Nova",
     "siteSlug": "auralis-nova",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Presentaciones para compartir tus ideas",
     "channel": "beta"
   },
   "data": {
     "name": "Auralis Nexus",
     "siteSlug": "auralis-nexus",
-    "version": "2.0.0",
+    "version": "2.0.1",
     "description": "Bases de datos, tablas y consultas locales",
     "channel": "beta"
   },
   "publisher": {
     "name": "Auralis Canvas",
     "siteSlug": "auralis-canvas",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Diseño editorial y publicaciones",
     "channel": "beta"
   },
   "architecture": {
     "name": "Auralis Atlas",
     "siteSlug": "auralis-atlas",
-    "version": "0.4.1",
+    "version": "0.4.2",
     "description": "CAD, arquitectura y espacios en 3D",
     "channel": "beta"
   },
   "stories": {
     "name": "Auralis Lore",
     "siteSlug": "auralis-lore",
-    "version": "2.0.1",
+    "version": "2.0.2",
     "description": "Historias, personajes, familias y audiolibros locales",
     "channel": "beta"
   },
   "prisma": {
     "name": "Auralis",
     "siteSlug": "auralis",
-    "version": "3.0.2",
+    "version": "3.0.3",
     "description": "Una nueva luz para tus ideas",
     "channel": "beta"
   }

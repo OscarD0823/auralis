@@ -4,35 +4,35 @@
   "apps": {
     "pdf": {
       "repository": "OscarD0823/auralis-folio",
-      "commit": "8710809e548209d7f337521d1aca8077ec333ece"
+      "commit": "df80a124f57d2a66f1d7188f7a97526fabe92aba"
     },
     "writer": {
       "repository": "OscarD0823/auralis-scribe",
-      "commit": "9f7a4bd257990e3c4a401df18779c850ba2d394a"
+      "commit": "eae4b0e14cdae0da73c206e21e7fd6a12b0951c3"
     },
     "sheets": {
       "repository": "OscarD0823/auralis-orbit",
-      "commit": "e3b349d64c01cca2d4810eeffee2da3f7fd6de87"
+      "commit": "568607913c9387bbcfaefc69c501f94b7e3e6c1d"
     },
     "slides": {
       "repository": "OscarD0823/auralis-nova",
-      "commit": "0732850ebf6129a2880d23cf8d9320da76cc840c"
+      "commit": "c2924ee6f77cf0fb02dd570d7704d61e7afb5180"
     },
     "data": {
       "repository": "OscarD0823/auralis-nexus",
-      "commit": "5c6ed365b40ec78e14e66c3d96ce02e0b8b35d6e"
+      "commit": "6b9dc3526c5cbbb251a11051aab1e14c7ce57ecb"
     },
     "publisher": {
       "repository": "OscarD0823/auralis-canvas",
-      "commit": "dfa2e949e385f6e8dedeb19b2857791d61b9978c"
+      "commit": "67aa181819786d4eba19712eeb38f0d765334fed"
     },
     "architecture": {
       "repository": "OscarD0823/auralis-atlas",
-      "commit": "93e920815d73b2378d8d3563529d66614bb162e5"
+      "commit": "87816980eb45cd5edf4b5a47c8d75c27819ed6ba"
     },
     "stories": {
       "repository": "OscarD0823/auralis-lore",
-      "commit": "5add6adb954b44a3000ba31d9f203376e2fd8e13"
+      "commit": "27af34ec7f7d5876a4ea9a455e2b3d1423341de8"
     }
   }
 }

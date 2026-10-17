@@ -1,9 +1,11 @@
 import {useLocalAutosave} from './useLocalAutosave';
+import {DocumentLoading} from './DocumentLoading';
+import {yieldToDevice} from './task-yield';
 import {TemplateGallery} from './TemplateGallery';
 import {createFlowTemplate} from '@prisma/writer/flow-templates';
 import {creationTemplate} from './template-catalog';
 import '@prisma/writer/writing-pages.css';
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { PDFDocument } from "pdf-lib";
 import {
   ArrowDown,
@@ -96,7 +98,7 @@ import { WordTools } from "@prisma/writer/WordTools";
 import { DocumentRuler, VerticalDocumentRuler } from "@prisma/writer/DocumentRuler";
 import { selectedSection, documentSections, changeSection } from "@prisma/writer/sections";
 import { normalizeAcademicDocument, academicPlainText } from "@prisma/writer/academic";
-import { documentStatistics } from "@prisma/writer/document-tools";
+import { documentWordCounts } from "@prisma/writer/document-tools";
 import type { TextPreparation, Inspection } from "@prisma/pdf/native";
 import type { RichNode } from "@prisma/writer/flow";
 import { FontPicker } from "./FontPicker";
@@ -232,6 +234,7 @@ export default function Studio() {
       .flatMap((p) => p.marks)
       .find((m) => m.id === selectedId),
     writing = !!workspace.flow && view === "write";
+  const wordCounts=useMemo(()=>workspace.flow?documentWordCounts(workspace.flow.content):{words:0,characters:0},[workspace.flow?.content]);
   const rich =
     editor && !editor.isDestroyed && (writing || !!editing || tool === "edit")
       ? editor
@@ -565,6 +568,7 @@ export default function Studio() {
   async function openFiles(files: FileList | File[] | null, append = false) {
     if (!files?.length) return;
     setBusy(append ? "Uniendo PDF…" : "Abriendo documento…");
+    await yieldToDevice();
     try {
       let next = append ? state.current : emptyWorkspace();
       if (append && next.flow)
@@ -2672,7 +2676,7 @@ export default function Studio() {
                 </span>
                 <span>
                   {writing
-                    ? documentStatistics(workspace.flow!.content).words +
+                    ? wordCounts.words +
                       " palabras"
                     : workspace.pages.length + " páginas"}
                 </span>
@@ -2951,13 +2955,9 @@ export default function Studio() {
             </span>
             {writing && workspace.flow && (
               <span className="document-statistics">
-                {documentStatistics(
-                  workspace.flow.content,
-                ).words.toLocaleString("es-CO")}{" "}
+                {wordCounts.words.toLocaleString("es-CO")}{" "}
                 palabras ·{" "}
-                {documentStatistics(
-                  workspace.flow.content,
-                ).characters.toLocaleString("es-CO")}{" "}
+                {wordCounts.characters.toLocaleString("es-CO")}{" "}
                 caracteres
               </span>
             )}
@@ -3034,10 +3034,7 @@ export default function Studio() {
         </div>
       )}
       {busy && (
-        <div className="busy-overlay" role="status">
-          <LoaderCircle className="spin" />
-          {busy}
-        </div>
+        <DocumentLoading label={busy} overlay/>
       )}
       {dialog === "signature" && (
         <Signature

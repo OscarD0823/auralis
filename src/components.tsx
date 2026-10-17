@@ -20,7 +20,7 @@ export function PageThumbnail({
 }) {
   const ref = useRef<HTMLDivElement>(null),
     [visible, setVisible] = useState(false),
-    [dimensions, setDimensions] = useState<[number, number]>([595, 842]);
+    [dimensions, setDimensions] = useState<[number, number]>(page.size??[595, 842]);
   const [w, h] = dimensions;
   useEffect(() => {
     const o = new IntersectionObserver(
@@ -108,11 +108,13 @@ export function PageCanvas({
     setFailed(false);
     let cancelled = false;
     let task: { cancel: () => void } | undefined;
+    let cleanupPage=()=>{};
     (async () => {
       try {
         const pdf = await getPdf(source);
         const p = await pdf.getPage(page.index + 1);
-        if (cancelled) return;
+        cleanupPage=()=>{p.cleanup();};
+        if (cancelled) {cleanupPage();return;}
         const viewport = p.getViewport({
           scale: 1,
           rotation: rotation(p.rotate + page.rotation),
@@ -156,6 +158,7 @@ export function PageCanvas({
     return () => {
       cancelled = true;
       task?.cancel();
+      cleanupPage();
       if (ref.current) ref.current.width = ref.current.height = 0;
     };
   }, [source.id, page.index, page.rotation, width]);
