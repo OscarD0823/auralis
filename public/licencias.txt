@@ -1,4 +1,4 @@
-Auralis Folio 8.0.7 BETA / Auralis Scribe 3.0.7 BETA / Auralis Orbit 2.0.2 BETA / Auralis Nova 2.0.3 BETA / Auralis Nexus 2.0.2 BETA / Auralis Canvas 2.0.3 BETA / Auralis Atlas 0.4.3 BETA / Auralis Lore 2.1.0 BETA / Auralis 3.1.0 BETA
+Auralis Folio 8.0.7 BETA / Auralis Scribe 3.0.7 BETA / Auralis Orbit 2.0.2 BETA / Auralis Nova 2.0.3 BETA / Auralis Nexus 2.0.2 BETA / Auralis Canvas 2.0.3 BETA / Auralis Atlas 0.4.3 BETA / Auralis Lore 2.1.1 BETA / Auralis 3.1.1 BETA
 Copyright (C) 2026 OscarD0823 y colaboradores.
 Software libre: AGPL-3.0-or-later. Sin garantía. Licencia completa: ./LICENSE.txt
 Código propio de esta compilación: ./prisma-pdf-source.tar.gz

@@ -45,13 +45,13 @@
     },
     "stories": {
       "name": "Auralis Lore",
-      "version": "2.1.0",
+      "version": "2.1.1",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis-lore"
     },
     "prisma": {
       "name": "Auralis",
-      "version": "3.1.0",
+      "version": "3.1.1",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis"
     }
