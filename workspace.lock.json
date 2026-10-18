@@ -4,11 +4,11 @@
   "apps": {
     "pdf": {
       "repository": "OscarD0823/auralis-folio",
-      "commit": "1e593ce3d67c3106f39297bebf40cbc3763eec9d"
+      "commit": "6eed287fdf8eb84167a43ae66ca38ed790ed2119"
     },
     "writer": {
       "repository": "OscarD0823/auralis-scribe",
-      "commit": "4418dd72e9fa97262009836f3893c535ac56b583"
+      "commit": "2f79b92f8a6826350b26ddac8cb92183cebaaeb9"
     },
     "sheets": {
       "repository": "OscarD0823/auralis-orbit",
