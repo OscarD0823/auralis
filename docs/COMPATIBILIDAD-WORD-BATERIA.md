@@ -1,6 +1,6 @@
 # Batería avanzada de compatibilidad con Word
 
-La comparación del 17–18 de octubre de 2026 encontró dos pérdidas de texto en la importación de DOCX. Scribe 3.0.7 recupera los valores de controles de contenido insertados dentro de un párrafo y el texto de cuadros de texto. Selecciona una sola alternativa de representación de Word para evitar duplicados y prefiere imágenes PNG/JPEG compatibles. Los cuadros se muestran en el flujo del documento; su posición y su forma nativa todavía no se reconstruyen.
+La comparación del 17–18 de octubre de 2026 encontró dos pérdidas de texto en la importación de DOCX y una referencia de comentario inválida al reconstruir el archivo. Scribe 3.0.7 recupera los valores de controles de contenido insertados dentro de un párrafo y el texto de cuadros de texto, y exporta la referencia de comentario dentro de un elemento de texto permitido por el esquema. Selecciona una sola alternativa de representación de Word para evitar duplicados y prefiere imágenes PNG/JPEG compatibles. Los cuadros se muestran en el flujo del documento; su posición y su forma nativa todavía no se reconstruyen.
 
 Se añadieron avisos específicos para ecuaciones nativas, gráficos, controles y campos dinámicos que no se reconstruyen. Un aviso no equivale a implementar esas funciones. Los controles aparecen como texto y no se pueden rellenar como formularios nativos.
 
@@ -19,6 +19,7 @@ Una primera copia de la muestra contenía dos almacenes bibliográficos y Word u
 | Valor de texto, lista y fecha en controles de contenido | Antes ausente; ahora visible en el modelo y en Edge de escritorio y vista móvil |
 | Texto dentro de un cuadro de Word | Antes ausente; ahora aparece una vez, como texto del flujo principal |
 | Alternativas modernas y heredadas de un objeto | Se importa una rama; prueba de regresión para texto e imagen compatible |
+| Comentario en DOCX reconstruido | Corregida la referencia XML; validación Open XML sin errores en la muestra corregida |
 | Exportación sin cambios | Los tres documentos funcionales conservan exactamente los bytes originales |
 | Cambio de texto compatible | El inventario de partes nativas del archivo de referencia se conserva |
 | Cambio estructural | Se reconstruye el DOCX; pierde ecuación, gráfico, cuadro nativo, notas e historial de cambios de la muestra |
@@ -27,9 +28,9 @@ Una primera copia de la muestra contenía dos almacenes bibliográficos y Word u
 | Maestro en el editor | 17 páginas frente a 15 de Word; la fidelidad de paginación sigue siendo parcial |
 | Carga sintética en Edge en este PC | 500 páginas, marcador final presente, unos 15 s hasta el editor; una medición, sin equivalencia con un teléfono físico |
 | Tráfico durante importación de la batería en Edge | Ninguna solicitud de escritura/subida observada en estas pruebas |
-| Pruebas automatizadas | 323 TypeScript y 15 JavaScript aprobadas; TypeScript sin errores |
+| Pruebas automatizadas | 324 TypeScript y 15 JavaScript aprobadas; TypeScript sin errores |
 
-El documento de referencia contiene un gráfico con un libro XLSX incrustado y una ecuación OMML. Que esas partes sobrevivan a un cambio de texto no demuestra representación ni edición en Scribe. Los cuatro controles que crea una exportación reconstruida del maestro pertenecen a sus índices; no son una recuperación de formularios.
+El documento de referencia contiene un gráfico con un libro XLSX incrustado y una ecuación OMML. La copia exportada con un cambio de texto se reabrió en Word sin reparación y se inspeccionaron gráfico, cuadro, ecuación y comentario. Esto no demuestra representación ni edición de esos objetos en Scribe. Los cuatro controles que crea una exportación reconstruida del maestro pertenecen a sus índices; no son una recuperación de formularios.
 
 ## Funciones que siguen faltando o requieren otra prueba
 
