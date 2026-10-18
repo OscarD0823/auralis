@@ -8,3 +8,8 @@ test('Nexus recovers unexecuted SQL and a pending record separately from databas
  assert.equal('draft' in (await listOfficeFiles('data')).find(card=>card.id===file.id)!,false);
  assert.equal(recoverDataDraft({sql:42}),undefined);assert.equal(recoverDataDraft(undefined),undefined);
 });
+test('Nexus restores typed query parameters and the page of an unfinished record without executing SQL',()=>{
+ const base={sql:'DELETE FROM Pedidos;',newTable:'Tabla',definition:'id INTEGER',createOpen:false,tab:'Salud',table:'Pedidos',record:{importe:'42'},rowKey:{rowid:1507},newRecord:false,params:{':minimo':'15'},paramTypes:{':minimo':'number'},queryName:'Importes',queryId:'q1',nullFields:['nota'],browse:{offset:1500,pageSize:100,search:'',sort:'importe',direction:'desc'}};
+ const recovered=recoverDataDraft(base)!;assert.equal(recovered.sql,'DELETE FROM Pedidos;');assert.equal(recovered.browse?.offset,1500);assert.equal(recovered.paramTypes?.[':minimo'],'number');assert.deepEqual(recovered.nullFields,['nota']);assert.equal(recovered.tab,'Salud');
+ const invalid=recoverDataDraft({...base,paramTypes:{':minimo':'unsupported'},browse:{offset:-2,pageSize:42,direction:'arbitrary'}})!;assert.equal(invalid.paramTypes,undefined);assert.equal(invalid.browse?.offset,0);assert.equal(invalid.browse?.pageSize,100);assert.equal(invalid.browse?.direction,'asc');
+});

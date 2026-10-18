@@ -1,5 +1,11 @@
 # Estado y pendientes de Auralis
 
+## Avance del 18 de octubre de 2026: Nexus
+
+Nexus 2.1.0 y Auralis 3.2.0 incorporan explorador paginado, búsqueda y ordenación sobre todos los registros, consultas guardadas con parámetros tipados, constructor visual con una unión por clave externa, mapa de relaciones, perfiles de datos, gráficos agrupados y comprobaciones explícitas de integridad y claves externas. Las exportaciones tabulares ya no se limitan a la vista previa de 500 filas. Se corrigió la identidad de registros con claves nullable y la ejecución completa de escrituras con RETURNING.
+
+La [guía de Nexus](NEXUS-EXPLORADOR-LOCAL.md) detalla los límites y la evidencia de regresión. La prueba de interfaz usa una base sintética de 1.507 registros e incluye edición, deshacer/rehacer, consultas, exportación y reapertura; las ventanas móviles no certifican un teléfono físico. AUD-096 a AUD-101 siguen abiertos: este bloque no acredita ACCDB/MDB, VBA completo ni diseñadores libres de formularios e informes.
+
 ## Avance del 17 de octubre de 2026
 
 Las [comprobaciones de Office y las mejoras de tablas e índices](OFFICE-FUNCIONES-2026-10-17.md) registran el siguiente bloque. El acceso a Word volvió a funcionar y se confirmó la corrección del intercambio de títulos y apéndices en una muestra de seis páginas. AUD-053 sigue en curso: no se declara paginación equivalente para todos los documentos ni división visual completa de filas altas. Los otros puntos conservan sus estados y criterios.

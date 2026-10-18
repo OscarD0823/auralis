@@ -30,8 +30,8 @@
   "data": {
     "name": "Auralis Nexus",
     "siteSlug": "auralis-nexus",
-    "version": "2.0.2",
-    "description": "Bases de datos, tablas y consultas locales",
+    "version": "2.1.0",
+    "description": "Bases locales, consultas visuales y análisis de datos",
     "channel": "beta"
   },
   "publisher": {
@@ -58,7 +58,7 @@
   "prisma": {
     "name": "Auralis",
     "siteSlug": "auralis",
-    "version": "3.1.1",
+    "version": "3.2.0",
     "description": "Una nueva luz para tus ideas",
     "channel": "beta"
   }
