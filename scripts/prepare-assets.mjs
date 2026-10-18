@@ -11,6 +11,7 @@ const require = createRequire(import.meta.url);
 await import('./prepare-licenses.mjs');
 await import('./prepare-proofing.mjs');
 await import('./prepare-lore-audio.mjs');
+await import('./prepare-lore-ai.mjs');
 const {gunzipSync}=require('node:zlib');
 const {unlinkSync}=require('node:fs');
 const writer = process.env.VITE_PRODUCT === "writer";
@@ -32,8 +33,9 @@ for(const features of Object.values(suiteFeatures))features.unshift('Nuevos icon
 for(const kind of ['pdf','writer','prisma'])suiteFeatures[kind].unshift('Vista previa inicial del documento durante la apertura y preparación progresiva de documentos extensos');
 for(const kind of ['writer','prisma'])suiteFeatures[kind].unshift('Opciones de párrafo: mantener con el siguiente, líneas juntas y salto anterior, con intercambio DOCX');
 for(const kind of ['pdf','writer','prisma'])suiteFeatures[kind].unshift('Apertura más fluida de documentos extensos y menor uso de memoria al recorrer páginas PDF');
-for(const target of ['stories','prisma'])suiteFeatures[target].unshift('Audiolibros neuronales locales: 19 voces en 10 idiomas, detección automática, diálogos por personaje, 264 efectos y exportación WAV/ZIP');
+for(const target of ['stories','prisma'])suiteFeatures[target].unshift('Audiolibros neuronales locales: 30 voces en 10 idiomas, nueve en español, detección automática, diálogos por personaje, 264 efectos y exportación WAV/ZIP');
 for(const target of ['stories','prisma'])suiteFeatures[target].unshift('Preparación verificada del audiolibro sin conexión: aplicación, motor, efectos y voces de los capítulos; actualización web corregida');
+for(const target of ['stories','prisma'])suiteFeatures[target].unshift('Lore: asistente editorial local opcional, conversación y coherencia por fragmentos; variante creativa sin filtros de palabras añadidos por Auralis');
 for(const target of ['stories','prisma'])suiteFeatures[target].unshift('Lore: guía para escritores, exportación de novela o capítulos, escudos y fondos propios, árbol y fichas PNG/SVG, corrector local de toda la novela');
 const release = 'https://github.com/OscarD0823/'+products[kind].siteSlug+'/releases/';
 writeFileSync(

@@ -217,6 +217,13 @@
     "architecture/storage.ts": "architecture",
     "architecture/terrain.ts": "architecture",
     "architecture/units.ts": "architecture",
-    "architecture/welcome.css": "architecture"
+    "architecture/welcome.css": "architecture",
+    "LoreAssistant.tsx": "stories",
+    "continuity-context.ts": "stories",
+    "local-ai-engine.ts": "stories",
+    "local-ai-model.ts": "stories",
+    "local-ai-protocol.ts": "stories",
+    "local-ai-storage.ts": "stories",
+    "local-ai.worker.ts": "stories"
   }
 }

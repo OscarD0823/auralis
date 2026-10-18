@@ -51,14 +51,14 @@
   "stories": {
     "name": "Auralis Lore",
     "siteSlug": "auralis-lore",
-    "version": "2.0.3",
+    "version": "2.1.0",
     "description": "Historias, personajes, familias y audiolibros locales",
     "channel": "beta"
   },
   "prisma": {
     "name": "Auralis",
     "siteSlug": "auralis",
-    "version": "3.0.8",
+    "version": "3.1.0",
     "description": "Una nueva luz para tus ideas",
     "channel": "beta"
   }

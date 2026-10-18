@@ -45,6 +45,7 @@
     "@tiptap/pm": "3.31.4",
     "@tiptap/react": "^3.31.4",
     "@tiptap/starter-kit": "^3.31.4",
+    "@wllama/wllama": "2.4.0",
     "@xmldom/xmldom": "0.9.12",
     "bidi-js": "1.0.3",
     "buffer": "^6.0.3",

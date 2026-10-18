@@ -27,3 +27,5 @@ pnpm dev
 Abre asteoria.code-workspace para trabajar con el núcleo y ocho módulos. Una mejora se implementa una vez y se publica en la versión general y su aplicación. [Entorno y publicación](README-workspace.md) · [Marca, migración y límites](docs/Auralis-BETA.md) · [Atlas](docs/Auralis-ATLAS-0.3.md).
 
 AGPL-3.0-or-later, sin garantía. Los recursos de terceros conservan sus propias licencias, fuentes y atribuciones. Los formatos y macros tienen compatibilidad parcial; la Beta no promete equivalencia total con otras suites.
+
+[Lore: voces neuronales y asistente editorial local](docs/LORE-IA-LOCAL.md). La IA creativa es opcional; Auralis no añade filtros de palabras y conserva el texto original. Las sugerencias del modelo compacto son experimentales.

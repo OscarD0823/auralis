@@ -1,0 +1,22 @@
+{
+  "runtime": {
+    "repository": "https://github.com/ngxson/wllama",
+    "version": "2.4.0",
+    "packages": [
+      "@wllama/wllama"
+    ],
+    "license": "MIT",
+    "changes": "Unmodified single-thread WASM32; SDK absolute URL helper adapted to workers by vite.config.ts. Local assets, outer worker, one CPU thread. No Memory64/JSPI requirement."
+  },
+  "model": {
+    "repository": "https://huggingface.co/mradermacher/Qwen2.5-0.5B-Instruct-abliterated-v3-GGUF",
+    "revision": "0e316ba90e319acd5d2530d0fe5ed687ac4e033c",
+    "file": "Qwen2.5-0.5B-Instruct-abliterated-v3.Q4_K_M.gguf",
+    "bytes": 397808544,
+    "sha256": "675532c67ddb159b2148c6389933ac9cae78af1527d0cdfcd82b95f85071bfa2",
+    "declaredLicense": "Apache-2.0",
+    "authors": "Qwen (base); huihui-ai (abliteration v3); mradermacher (GGUF quantization)",
+    "changes": "No changes to weights. Optional, verified download. Auralis supplies editorial prompts, not a word filter.",
+    "card": "Creative-model-card.md"
+  }
+}

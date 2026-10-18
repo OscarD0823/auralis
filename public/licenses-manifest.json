@@ -3,55 +3,55 @@
   "products": {
     "pdf": {
       "name": "Auralis Folio",
-      "version": "8.0.0",
+      "version": "8.0.7",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis-folio"
     },
     "writer": {
       "name": "Auralis Scribe",
-      "version": "3.0.0",
+      "version": "3.0.7",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis-scribe"
     },
     "sheets": {
       "name": "Auralis Orbit",
-      "version": "2.0.0",
+      "version": "2.0.2",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis-orbit"
     },
     "slides": {
       "name": "Auralis Nova",
-      "version": "2.0.0",
+      "version": "2.0.3",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis-nova"
     },
     "data": {
       "name": "Auralis Nexus",
-      "version": "2.0.0",
+      "version": "2.0.2",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis-nexus"
     },
     "publisher": {
       "name": "Auralis Canvas",
-      "version": "2.0.0",
+      "version": "2.0.3",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis-canvas"
     },
     "architecture": {
       "name": "Auralis Atlas",
-      "version": "0.4.0",
+      "version": "0.4.3",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis-atlas"
     },
     "stories": {
       "name": "Auralis Lore",
-      "version": "2.0.0",
+      "version": "2.1.0",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis-lore"
     },
     "prisma": {
       "name": "Auralis",
-      "version": "3.0.0",
+      "version": "3.1.0",
       "channel": "beta",
       "sourceRepository": "OscarD0823/auralis"
     }
@@ -590,6 +590,19 @@
         {
           "file": "third-party/@floating-ui-utils-0.2.12-LICENSE",
           "sha256": "0e4c9a9b6c71019cbbea3bdc20b01223110a9035700f9c960c8fcbf78c2325ce"
+        }
+      ]
+    },
+    {
+      "name": "@huggingface/jinja",
+      "version": "0.5.10",
+      "declaredLicense": "MIT",
+      "scope": "installed-transitive",
+      "repository": "https://github.com/huggingface/huggingface.js.git",
+      "notices": [
+        {
+          "file": "third-party/@huggingface-jinja-0.5.10-LICENSE",
+          "sha256": "d6e7b19451c1b3d1d66353bb4b1274138953b3bfd9ae60c56e77b1f548796982"
         }
       ]
     },
@@ -1961,6 +1974,40 @@
           "sha256": "29b68325fe026047d13e187b44c33b2acacf7dc647dec4583702e59f235e13b5"
         }
       ]
+    },
+    {
+      "name": "@wllama/wllama",
+      "version": "2.4.0",
+      "declaredLicense": "MIT",
+      "scope": "direct-runtime",
+      "repository": "git+https://github.com/ngxson/wllama.git",
+      "notices": [
+        {
+          "file": "third-party/@wllama-wllama-2.4.0-LICENCE",
+          "sha256": "5866e3bd7e3cbd3f7c8bea6efd8a1e7fa7cc8de68c30f428aff7c6584a0fb720"
+        }
+      ]
+    },
+    {
+      "name": "@wllama/wllama",
+      "version": "3.8.1",
+      "declaredLicense": "MIT",
+      "scope": "direct-runtime",
+      "repository": "git+https://github.com/ngxson/wllama.git",
+      "notices": [
+        {
+          "file": "third-party/@wllama-wllama-3.8.1-LICENCE",
+          "sha256": "5866e3bd7e3cbd3f7c8bea6efd8a1e7fa7cc8de68c30f428aff7c6584a0fb720"
+        }
+      ]
+    },
+    {
+      "name": "@wllama/wllama-compat",
+      "version": "3.8.1",
+      "declaredLicense": "MIT",
+      "scope": "installed-transitive",
+      "repository": "git+https://github.com/ngxson/wllama.git",
+      "notices": []
     },
     {
       "name": "@xmldom/xmldom",

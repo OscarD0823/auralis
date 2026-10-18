@@ -1,4 +1,4 @@
-Auralis Folio 8.0.0 BETA / Auralis Scribe 3.0.0 BETA / Auralis Orbit 2.0.0 BETA / Auralis Nova 2.0.0 BETA / Auralis Nexus 2.0.0 BETA / Auralis Canvas 2.0.0 BETA / Auralis Atlas 0.4.0 BETA / Auralis Lore 2.0.0 BETA / Auralis 3.0.0 BETA
+Auralis Folio 8.0.7 BETA / Auralis Scribe 3.0.7 BETA / Auralis Orbit 2.0.2 BETA / Auralis Nova 2.0.3 BETA / Auralis Nexus 2.0.2 BETA / Auralis Canvas 2.0.3 BETA / Auralis Atlas 0.4.3 BETA / Auralis Lore 2.1.0 BETA / Auralis 3.1.0 BETA
 Copyright (C) 2026 OscarD0823 y colaboradores.
 Software libre: AGPL-3.0-or-later. Sin garantía. Licencia completa: ./LICENSE.txt
 Código propio de esta compilación: ./prisma-pdf-source.tar.gz
@@ -25,6 +25,8 @@ Inventario exacto, licencias declaradas y hashes de avisos: ./licenses-manifest.
 @tiptap/pm 3.31.4 — MIT — https://github.com/ueberdosis/tiptap
 @tiptap/react 3.31.4 — MIT — https://github.com/ueberdosis/tiptap
 @tiptap/starter-kit 3.31.4 — MIT — https://github.com/ueberdosis/tiptap
+@wllama/wllama 2.4.0 — MIT — git+https://github.com/ngxson/wllama.git
+@wllama/wllama 3.8.1 — MIT — git+https://github.com/ngxson/wllama.git
 @xmldom/xmldom 0.8.15 — MIT — git://github.com/xmldom/xmldom.git
 @xmldom/xmldom 0.9.12 — MIT — git://github.com/xmldom/xmldom.git
 bidi-js 1.0.3 — MIT — https://github.com/lojjic/bidi-js.git
@@ -193,6 +195,8 @@ Kenney RPG Audio, Impact Sounds and Sci-fi Sounds: CC0-1.0; original notices in 
 Ten original ASTEORIA procedural ambience sounds by OscarD0823: CC0-1.0, generator scripts/create-lore-ambiences.mjs.
 
 Lore neural voices: ONNX Runtime Web 1.30.0 (MIT), Piper Phonemize (MIT), eSpeak NG (GPL-3.0). Original notices, model cards and licenses in lore-audio/neural; preferred C/C++ source archives and build recipe in vendor/lore-neural. Models are pinned and verified before storage; manuscripts remain local.
+
+Lore optional editorial AI: wllama 2.4.0 (MIT), single-thread WASM32. SDK URL resolution is adapted to workers in vite.config.ts. Optional Qwen2.5 0.5B Instruct abliteration v3 by huihui-ai, GGUF quantization by mradermacher, base by Qwen; Apache-2.0 declared in the pinned distributor model card. Weights are unchanged and not bundled. Provenance, hashes, original card and license: vendor/lore-ai; shipped runtime notices: lore-ai/licenses in Lore and Auralis.
 
 
 Hunspell v1.6.2: autores y opciones en ./third-party/Hunspell-license.hunspell.txt; fuente y recetas de WASM fijadas en la entrega acompañante.
